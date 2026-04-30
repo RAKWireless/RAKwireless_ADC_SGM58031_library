@@ -129,10 +129,8 @@ uint16_t RAK_ADC_SGM58031::readWordRegister(uint8_t reg)
  **/
 float RAK_ADC_SGM58031::getVoltage()
 {
-  float voltage;
-  voltage = getAdcValue();
-  voltage = voltage * ReferenceVoltage / 32767.0; 
-  return voltage;
+  int16_t signedRaw = (int16_t)getAdcValue();
+  return (float)signedRaw * ReferenceVoltage / 32768.0f;
 }
 
 /**
